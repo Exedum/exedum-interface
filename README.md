@@ -17,7 +17,7 @@ npm start
 ### Mainnet
 - `Comming Soon` **DAO**
 - `Comming Soon` **Implementation**
-- `Comming Soon` **Døllar**
+- `Comming Soon` **EXED**
 - `Comming Soon` **Oracle**
 - `Comming Soon` **UniswapV2 USDC:EXED Pair**
 - `Comming Soon` **LP Incentivation Pool**

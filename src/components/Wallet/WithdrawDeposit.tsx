@@ -35,7 +35,7 @@ function WithdrawDeposit({
             <div style={{flexBasis: '32%'}}>
               <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"EXED"}/>
             </div>
-            {/* Deposit Døllar into DAO */}
+            {/* Deposit EXED into DAO */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <div style={{display: 'flex'}}>
                 <div style={{width: '60%', minWidth: '6em'}}>
@@ -71,7 +71,7 @@ function WithdrawDeposit({
               </div>
             </div>
             <div style={{flexBasis: '2%'}}/>
-            {/* Withdraw Døllar from DAO */}
+            {/* Withdraw EXED from DAO */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <div style={{display: 'flex'}}>
                 <div style={{width: '60%', minWidth: '7em'}}>
@@ -114,7 +114,7 @@ function WithdrawDeposit({
               <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"EXED"}/>
             </div>
             <div style={{flexBasis: '35%'}}/>
-            {/* Approve DAO to spend Døllar */}
+            {/* Approve DAO to spend EXED */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <Button
               className="btn btn-primary"

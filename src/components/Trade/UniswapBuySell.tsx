@@ -58,7 +58,7 @@ function UniswapBuySell({
       <div style={{ display: 'flex' }}>
         {/* total Issued */}
         <div style={{ width: '30%' }}>
-          <BalanceBlock asset="Døllar Balance" balance={userBalanceESD} suffix={" EXED"}/>
+          <BalanceBlock asset="EXED Balance" balance={userBalanceESD} suffix={" EXED"}/>
         </div>
         {/* Buy Token from Uniswap */}
         <div style={{ width: '32%', paddingTop: '2%' }}>

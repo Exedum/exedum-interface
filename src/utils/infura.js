@@ -47,7 +47,7 @@ export const getTokenAllowance = async (token, account, spender) => {
   return tokenContract.methods.allowance(account, spender).call();
 };
 
-// Døllar Protocol
+// EXED Protocol
 
 /**
  *

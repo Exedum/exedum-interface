@@ -73,7 +73,7 @@ function WithdrawDeposit({
               </div>
             </div>
             <div style={{flexBasis: '2%'}}/>
-            {/* Withdraw Døllar from DAO */}
+            {/* Withdraw EXED from DAO */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <div style={{display: 'flex'}}>
                 <div style={{width: '60%', minWidth: '6em'}}>

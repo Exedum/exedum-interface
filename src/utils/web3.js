@@ -166,7 +166,7 @@ export const removeLiquidity = async (liquidityAmount, minAmountESD, minAmountUS
 };
 
 /**
- * Døllar Protocol
+ * EXED Protocol
  */
 
 export const advance = async (dao) => {
