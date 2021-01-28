@@ -93,6 +93,36 @@ function CandidateHistory({user}: CandidateHistoryProps) {
 
   return (
     <DataView
+      emptyState={{
+        default: {
+          displayLoader: false,
+          title: 'No data available.',
+          subtitle: null,
+          illustration: null,
+          clearLabel: null,
+        },
+        loading: {
+          displayLoader: false,
+          title: '⏳',
+          subtitle: null,
+          illustration: null,
+          clearLabel: null,
+        },
+        'empty-filters': {
+          displayLoader: false,
+          title: 'No results found.',
+          subtitle: 'We can’t find any item matching your filter selection.',
+          illustration: <img src="empty-state-illustration-red.png" alt="" />,
+          clearLabel: 'Clear filters',
+        },
+        'empty-search': {
+          displayLoader: false,
+          title: 'No results found.',
+          subtitle: 'We can’t find any item matching your search query.',
+          illustration: <img src="empty-state-illustration-red.png" alt="" />,
+          clearLabel: 'Clear filters',
+        },
+      }}
       fields={['Proposal', 'Candidate', 'Proposed', 'Complete', 'Proposer', 'Status', '']}
       status={ initialized ? 'default' : 'loading' }
       // @ts-ignore
