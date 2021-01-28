@@ -57,6 +57,7 @@ function BondUnbond({
               </div>
               <div style={{width: '40%', minWidth: '7em'}}>
                 <Button
+                  className="btn btn-primary"
                   wide
                   icon={status === 0 ? <IconCirclePlus/> : <IconCaution/>}
                   label="Bond"
@@ -92,6 +93,7 @@ function BondUnbond({
               </div>
               <div style={{width: '40%', minWidth: '7em'}}>
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={status === 0 ? <IconCircleMinus/> : <IconCaution/>}
                   label="Unbond"

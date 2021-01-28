@@ -38,6 +38,7 @@ function ConnectModal({
 
       <div style={{width: '50%', margin: 'auto', padding: '1%'}}>
         <Button
+        className="btn btn-primary"
           wide
           label={'Metamask'}
           icon={<img src={`./wallets/metamask-fox.svg`} style={{ height: 24 }} alt="Metamask"/>}
@@ -46,6 +47,7 @@ function ConnectModal({
       </div>
       <div style={{width: '50%', margin: 'auto', padding: '1%'}}>
         <Button
+        className="btn btn-primary"
           wide
           label={'WalletConnect'}
           icon={<img src={`./wallets/wallet-connect.svg`} style={{ height: 24 }} alt="WalletConnect"/>}
@@ -54,6 +56,7 @@ function ConnectModal({
       </div>
       <div style={{width: '50%', margin: 'auto', padding: '1%'}}>
         <Button
+        className="btn btn-primary"
           wide
           label={'Coinbase Wallet'}
           icon={<img src={`./wallets/coinbase-wallet.png`} style={{ height: 24 }} alt="Coinbase Wallet"/>}

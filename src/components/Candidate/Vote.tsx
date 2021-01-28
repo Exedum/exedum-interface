@@ -8,7 +8,7 @@ import {
 } from '../common/index';
 import {recordVote} from '../../utils/web3';
 
-import {ESDS} from "../../constants/tokens";
+import {EXEDS} from "../../constants/tokens";
 import TextBlock from "../common/TextBlock";
 
 type VoteProps = {
@@ -29,7 +29,7 @@ function Vote({
         <div style={{display: 'flex'}}>
           {/* User stake */}
           <div style={{width: '20%'}}>
-            <BalanceBlock asset="My Stake" balance={stake} suffix={ "ESDS"}/>
+            <BalanceBlock asset="My Stake" balance={stake} suffix={ "EXEDS"}/>
           </div>
           <div style={{width: '20%'}}>
             <TextBlock label="My Vote" text={VOTE_TYPE_MAP[vote]}/>
@@ -37,12 +37,13 @@ function Vote({
           {/* Remove vote for candidate */}
           <div style={{width: '18%', paddingTop: '2%'}}>
             <Button
+            className="btn btn-primary"
               wide
               icon={<IconRotateLeft/>}
               label="Unvote"
               onClick={() => {
                 recordVote(
-                  ESDS.addr,
+                  EXEDS.addr,
                   candidate,
                   0 // UNDECIDED
                 );
@@ -54,12 +55,13 @@ function Vote({
           <div style={{width: '3%'}} />
           <div style={{width: '18%', paddingTop: '2%'}}>
             <Button
+            className="btn btn-primary"
               wide
               icon={<IconCircleCheck/>}
               label="Accept"
               onClick={() => {
                 recordVote(
-                  ESDS.addr,
+                  EXEDS.addr,
                   candidate,
                   1 // APPROVE
                 );
@@ -72,12 +74,13 @@ function Vote({
           <div style={{width: '18%', paddingTop: '2%'}}>
             <div style={{display: 'flex'}}>
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={<IconProhibited/>}
                   label="Reject"
                   onClick={() => {
                     recordVote(
-                      ESDS.addr,
+                      EXEDS.addr,
                       candidate,
                       2 // REJECT
                     );

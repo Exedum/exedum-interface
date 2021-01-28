@@ -8,7 +8,7 @@ import {
   getStatusOf, getTokenAllowance,
   getTokenBalance, getTokenTotalSupply,
 } from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
+import {EXED, EXEDS} from "../../constants/tokens";
 import {DAO_EXIT_LOCKUP_EPOCHS} from "../../constants/values";
 import { toTokenUnitsBN } from '../../utils/number';
 
@@ -54,24 +54,24 @@ function Wallet({ user }: {user: string}) {
         esdBalance, esdAllowance, esdsBalance, esdsSupply, stagedBalance, bondedBalance, status, poolAddress,
         fluidUntilStr, lockedUntilStr
       ] = await Promise.all([
-        getTokenBalance(ESD.addr, user),
-        getTokenAllowance(ESD.addr, user, ESDS.addr),
-        getTokenBalance(ESDS.addr, user),
-        getTokenTotalSupply(ESDS.addr),
-        getBalanceOfStaged(ESDS.addr, user),
-        getBalanceBonded(ESDS.addr, user),
-        getStatusOf(ESDS.addr, user),
+        getTokenBalance(EXED.addr, user),
+        getTokenAllowance(EXED.addr, user, EXEDS.addr),
+        getTokenBalance(EXEDS.addr, user),
+        getTokenTotalSupply(EXEDS.addr),
+        getBalanceOfStaged(EXEDS.addr, user),
+        getBalanceBonded(EXEDS.addr, user),
+        getStatusOf(EXEDS.addr, user),
         getPoolAddress(),
 
-        getFluidUntil(ESDS.addr, user),
-        getLockedUntil(ESDS.addr, user),
+        getFluidUntil(EXEDS.addr, user),
+        getLockedUntil(EXEDS.addr, user),
       ]);
 
-      const userESDBalance = toTokenUnitsBN(esdBalance, ESD.decimals);
-      const userESDSBalance = toTokenUnitsBN(esdsBalance, ESDS.decimals);
-      const totalESDSSupply = toTokenUnitsBN(esdsSupply, ESDS.decimals);
-      const userStagedBalance = toTokenUnitsBN(stagedBalance, ESDS.decimals);
-      const userBondedBalance = toTokenUnitsBN(bondedBalance, ESDS.decimals);
+      const userESDBalance = toTokenUnitsBN(esdBalance, EXED.decimals);
+      const userESDSBalance = toTokenUnitsBN(esdsBalance, EXEDS.decimals);
+      const totalESDSSupply = toTokenUnitsBN(esdsSupply, EXEDS.decimals);
+      const userStagedBalance = toTokenUnitsBN(stagedBalance, EXEDS.decimals);
+      const userBondedBalance = toTokenUnitsBN(bondedBalance, EXEDS.decimals);
       const userStatus = parseInt(status, 10);
       const fluidUntil = parseInt(fluidUntilStr, 10);
       const lockedUntil = parseInt(lockedUntilStr, 10);

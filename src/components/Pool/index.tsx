@@ -11,7 +11,7 @@ import {
   getTokenBalance,
   getPoolFluidUntil
 } from '../../utils/infura';
-import {ESD, UNI, USDC} from "../../constants/tokens";
+import {EXED, UNI, USDC} from "../../constants/tokens";
 import {POOL_EXIT_LOCKUP_EPOCHS} from "../../constants/values";
 import { toTokenUnitsBN } from '../../utils/number';
 import { Header } from '@aragon/ui';
@@ -92,7 +92,7 @@ function Pool({ user }: {user: string}) {
         legacyStagedBalance, legacyBondedBalance, legacyRewardedBalance, legacyClaimableBalance, legacyStatus
       ] = await Promise.all([
         getPoolTotalBonded(poolAddressStr),
-        getTokenBalance(ESD.addr, UNI.addr),
+        getTokenBalance(EXED.addr, UNI.addr),
         getTokenBalance(USDC.addr, UNI.addr),
         getTokenBalance(UNI.addr, user),
         getTokenBalance(USDC.addr, user),
@@ -114,21 +114,21 @@ function Pool({ user }: {user: string}) {
         getPoolStatusOf(legacyPoolAddress, user)
       ]);
 
-      const poolTotalBonded = toTokenUnitsBN(poolTotalBondedStr, ESD.decimals);
-      const pairESDBalance = toTokenUnitsBN(pairBalanceESDStr, ESD.decimals);
+      const poolTotalBonded = toTokenUnitsBN(poolTotalBondedStr, EXED.decimals);
+      const pairESDBalance = toTokenUnitsBN(pairBalanceESDStr, EXED.decimals);
       const pairUSDCBalance = toTokenUnitsBN(pairBalanceUSDCStr, USDC.decimals);
       const userUNIBalance = toTokenUnitsBN(balance, UNI.decimals);
       const userUSDCBalance = toTokenUnitsBN(usdcBalance, USDC.decimals);
       const userStagedBalance = toTokenUnitsBN(stagedBalance, UNI.decimals);
       const userBondedBalance = toTokenUnitsBN(bondedBalance, UNI.decimals);
-      const userRewardedBalance = toTokenUnitsBN(rewardedBalance, ESD.decimals);
-      const userClaimableBalance = toTokenUnitsBN(claimableBalance, ESD.decimals);
+      const userRewardedBalance = toTokenUnitsBN(rewardedBalance, EXED.decimals);
+      const userClaimableBalance = toTokenUnitsBN(claimableBalance, EXED.decimals);
       const userStatus = parseInt(status, 10);
       const fluidUntil = parseInt(fluidUntilStr, 10);
       const legacyUserStagedBalance = toTokenUnitsBN(legacyStagedBalance, UNI.decimals);
       const legacyUserBondedBalance = toTokenUnitsBN(legacyBondedBalance, UNI.decimals);
       const legacyUserRewardedBalance = toTokenUnitsBN(legacyRewardedBalance, UNI.decimals);
-      const legacyUserClaimableBalance = toTokenUnitsBN(legacyClaimableBalance, ESD.decimals);
+      const legacyUserClaimableBalance = toTokenUnitsBN(legacyClaimableBalance, EXED.decimals);
       const legacyUserStatus = parseInt(legacyStatus, 10);
 
       if (!isCancelled) {

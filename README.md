@@ -19,7 +19,7 @@ npm start
 - `Comming Soon` **Implementation**
 - `Comming Soon` **Døllar**
 - `Comming Soon` **Oracle**
-- `Comming Soon` **UniswapV2 USDC:ESD Pair**
+- `Comming Soon` **UniswapV2 USDC:EXED Pair**
 - `Comming Soon` **LP Incentivation Pool**
 
 ## Disclaimer

@@ -56,6 +56,7 @@ function WithdrawDeposit({
                 </div>
                 <div style={{width: '40%', minWidth: '7em'}}>
                   <Button
+                  className="btn btn-primary"
                     wide
                     icon={status === 0 ? <IconCirclePlus/> : <IconLock/>}
                     label="Deposit"
@@ -92,6 +93,7 @@ function WithdrawDeposit({
                 </div>
                 <div style={{width: '40%', minWidth: '7em'}}>
                   <Button
+                  className="btn btn-primary"
                     wide
                     icon={status === 0 ? <IconCircleMinus/> : <IconLock/>}
                     label="Withdraw"
@@ -118,6 +120,7 @@ function WithdrawDeposit({
             {/* Approve Pool to spend UNI-V2 */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus />}
                 label="Approve"

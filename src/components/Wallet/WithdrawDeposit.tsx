@@ -8,7 +8,7 @@ import {
 } from '../common/index';
 import {approve, deposit, withdraw} from '../../utils/web3';
 import {isPos, toBaseUnitBN} from '../../utils/number';
-import {ESD, ESDS} from "../../constants/tokens";
+import {EXED, EXEDS} from "../../constants/tokens";
 import {MAX_UINT256} from "../../constants/values";
 import BigNumberInput from "../common/BigNumberInput";
 
@@ -33,7 +33,7 @@ function WithdrawDeposit({
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {/* total Issued */}
             <div style={{flexBasis: '32%'}}>
-              <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"ESD"}/>
+              <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"EXED"}/>
             </div>
             {/* Deposit Døllar into DAO */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
@@ -41,7 +41,7 @@ function WithdrawDeposit({
                 <div style={{width: '60%', minWidth: '6em'}}>
                   <>
                     <BigNumberInput
-                      adornment="ESD"
+                      adornment="EXED"
                       value={depositAmount}
                       setter={setDepositAmount}
                       disabled={status !== 0}
@@ -55,13 +55,14 @@ function WithdrawDeposit({
                 </div>
                 <div style={{width: '40%', minWidth: '6em'}}>
                   <Button
+                  className="btn btn-primary"
                     wide
                     icon={status === 0 ? <IconCirclePlus/> : <IconLock/>}
                     label="Deposit"
                     onClick={() => {
                       deposit(
-                        ESDS.addr,
-                        toBaseUnitBN(depositAmount, ESD.decimals),
+                        EXEDS.addr,
+                        toBaseUnitBN(depositAmount, EXED.decimals),
                       );
                     }}
                     disabled={status === 1 || !isPos(depositAmount) || depositAmount.isGreaterThan(balance)}
@@ -76,7 +77,7 @@ function WithdrawDeposit({
                 <div style={{width: '60%', minWidth: '7em'}}>
                   <>
                     <BigNumberInput
-                      adornment="ESD"
+                      adornment="EXED"
                       value={withdrawAmount}
                       setter={setWithdrawAmount}
                       disabled={status !== 0}
@@ -90,13 +91,14 @@ function WithdrawDeposit({
                 </div>
                 <div style={{width: '40%', minWidth: '7em'}}>
                   <Button
+                  className="btn btn-primary"
                     wide
                     icon={status === 0 ? <IconCircleMinus/> : <IconLock/>}
                     label="Withdraw"
                     onClick={() => {
                       withdraw(
-                        ESDS.addr,
-                        toBaseUnitBN(withdrawAmount, ESD.decimals),
+                        EXEDS.addr,
+                        toBaseUnitBN(withdrawAmount, EXED.decimals),
                       );
                     }}
                     disabled={status === 1 || !isPos(withdrawAmount) || withdrawAmount.isGreaterThan(stagedBalance)}
@@ -109,17 +111,18 @@ function WithdrawDeposit({
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {/* total Issued */}
             <div style={{flexBasis: '32%'}}>
-              <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"ESD"}/>
+              <BalanceBlock asset="Staged" balance={stagedBalance} suffix={"EXED"}/>
             </div>
             <div style={{flexBasis: '35%'}}/>
             {/* Approve DAO to spend Døllar */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus />}
                 label="Approve"
                 onClick={() => {
-                  approve(ESD.addr, ESDS.addr);
+                  approve(EXED.addr, EXEDS.addr);
                 }}
                 disabled={user === ''}
               />

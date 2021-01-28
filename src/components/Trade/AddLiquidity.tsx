@@ -5,7 +5,7 @@ import { addLiquidity } from '../../utils/web3';
 
 import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
 import {toBaseUnitBN, toTokenUnitsBN} from '../../utils/number';
-import {ESD, UNI, USDC} from "../../constants/tokens";
+import {EXED, UNI, USDC} from "../../constants/tokens";
 import {SLIPPAGE} from "../../utils/calculation";
 import BigNumberInput from "../common/BigNumberInput";
 
@@ -48,9 +48,9 @@ function AddLiquidity({
       USDC.decimals);
     setAmountESD(newAmountESD);
 
-    const newAmountESDBU = toBaseUnitBN(newAmountESD, ESD.decimals);
+    const newAmountESDBU = toBaseUnitBN(newAmountESD, EXED.decimals);
     const pairTotalSupplyBU = toBaseUnitBN(pairTotalSupplyUNI, UNI.decimals);
-    const pairBalanceESDBU = toBaseUnitBN(pairBalanceESD, ESD.decimals);
+    const pairBalanceESDBU = toBaseUnitBN(pairBalanceESD, EXED.decimals);
     const newAmountUNIBU = pairTotalSupplyBU.multipliedBy(newAmountESDBU).div(pairBalanceESDBU).integerValue(BigNumber.ROUND_FLOOR);
     const newAmountUNI = toTokenUnitsBN(newAmountUNIBU, UNI.decimals);
     setAmountUNI(newAmountUNI)
@@ -67,10 +67,10 @@ function AddLiquidity({
     const amountESDBN = new BigNumber(amountESD)
     setAmountESD(amountESDBN);
 
-    const amountESDBU = toBaseUnitBN(amountESDBN, ESD.decimals);
+    const amountESDBU = toBaseUnitBN(amountESDBN, EXED.decimals);
     const newAmountUSDC = toTokenUnitsBN(
       amountESDBU.multipliedBy(USDCToESDRatio).integerValue(BigNumber.ROUND_FLOOR),
-      ESD.decimals);
+      EXED.decimals);
     setAmountUSDC(newAmountUSDC);
 
     const newAmountUSDCBU = toBaseUnitBN(newAmountUSDC, USDC.decimals);
@@ -94,7 +94,7 @@ function AddLiquidity({
             <div style={{ width: '35%', marginRight: '5%' }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EXED"
                   value={amountESD}
                   setter={onChangeAmountESD}
                 />
@@ -115,11 +115,12 @@ function AddLiquidity({
             </div>
             <div style={{ width: '30%' }}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus />}
                 label="Add Liquidity"
                 onClick={() => {
-                  const amountESDBU = toBaseUnitBN(amountESD, ESD.decimals);
+                  const amountESDBU = toBaseUnitBN(amountESD, EXED.decimals);
                   const amountUSDCBU = toBaseUnitBN(amountUSDC, USDC.decimals);
                   addLiquidity(
                     amountESDBU,

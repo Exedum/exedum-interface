@@ -12,7 +12,7 @@ import { getCost, getProceeds } from '../../utils/infura';
 
 
 import {isPos, toBaseUnitBN, toTokenUnitsBN} from '../../utils/number';
-import {ESD, USDC} from "../../constants/tokens";
+import {EXED, USDC} from "../../constants/tokens";
 import {decreaseWithSlippage, increaseWithSlippage} from "../../utils/calculation";
 import BigNumberInput from "../common/BigNumberInput";
 
@@ -39,7 +39,7 @@ function UniswapBuySell({
       setCost(new BigNumber(0));
       return;
     }
-    const cost = await getCost(toBaseUnitBN(buyAmountBN, ESD.decimals));
+    const cost = await getCost(toBaseUnitBN(buyAmountBN, EXED.decimals));
     setCost(toTokenUnitsBN(new BigNumber(cost), USDC.decimals));
   };
 
@@ -49,7 +49,7 @@ function UniswapBuySell({
       setProceeds(new BigNumber(0));
       return;
     }
-    const proceeds = await getProceeds(toBaseUnitBN(sellAmountBN, ESD.decimals));
+    const proceeds = await getProceeds(toBaseUnitBN(sellAmountBN, EXED.decimals));
     setProceeds(toTokenUnitsBN(new BigNumber(proceeds), USDC.decimals));
   };
 
@@ -58,7 +58,7 @@ function UniswapBuySell({
       <div style={{ display: 'flex' }}>
         {/* total Issued */}
         <div style={{ width: '30%' }}>
-          <BalanceBlock asset="Døllar Balance" balance={userBalanceESD} suffix={" ESD"}/>
+          <BalanceBlock asset="Døllar Balance" balance={userBalanceESD} suffix={" EXED"}/>
         </div>
         {/* Buy Token from Uniswap */}
         <div style={{ width: '32%', paddingTop: '2%' }}>
@@ -66,7 +66,7 @@ function UniswapBuySell({
             <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EXED"
                   value={buyAmount}
                   setter={(value) => {
                     setBuyAmount(value);
@@ -77,12 +77,13 @@ function UniswapBuySell({
             </div>
             <div style={{ width: '40%' }}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus />}
                 label="Buy"
                 onClick={() => {
                   buyESD(
-                    toBaseUnitBN(buyAmount, ESD.decimals),
+                    toBaseUnitBN(buyAmount, EXED.decimals),
                     increaseWithSlippage(toBaseUnitBN(cost, USDC.decimals)),
                   );
                 }}
@@ -98,7 +99,7 @@ function UniswapBuySell({
             <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EXED"
                   value={sellAmount}
                   setter={(value) => {
                     setSellAmount(value);
@@ -116,12 +117,13 @@ function UniswapBuySell({
             </div>
             <div style={{ width: '40%' }}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCircleMinus />}
                 label="Sell"
                 onClick={() => {
                   sellESD(
-                    toBaseUnitBN(sellAmount, ESD.decimals),
+                    toBaseUnitBN(sellAmount, EXED.decimals),
                     decreaseWithSlippage(toBaseUnitBN(proceeds, USDC.decimals)),
                   );
                 }}

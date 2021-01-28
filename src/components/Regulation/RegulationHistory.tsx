@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { DataView } from '@aragon/ui';
 
 import {getAllRegulations} from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
+import {EXED, EXEDS} from "../../constants/tokens";
 import {formatBN, toTokenUnitsBN} from "../../utils/number";
 import BigNumber from "bignumber.js";
 
@@ -24,26 +24,26 @@ type RegulationEntry = {
 }
 
 function formatPrice(type, data) {
-  return type === 'NEUTRAL' ? '1.00' : formatBN(toTokenUnitsBN(new BigNumber(data.price), ESD.decimals), 3);
+  return type === 'NEUTRAL' ? '1.00' : formatBN(toTokenUnitsBN(new BigNumber(data.price), EXED.decimals), 3);
 }
 
 function formatDeltaRedeemable(type, data) {
   return type === 'INCREASE' ?
-    '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newRedeemable), ESD.decimals), 2) :
+    '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newRedeemable), EXED.decimals), 2) :
     '+0.00';
 }
 
 function formatDeltaDebt(type, data) {
   return type === 'INCREASE' ?
-    '-' + formatBN(toTokenUnitsBN(new BigNumber(data.lessDebt), ESD.decimals), 2) :
+    '-' + formatBN(toTokenUnitsBN(new BigNumber(data.lessDebt), EXED.decimals), 2) :
     type === 'DECREASE' ?
-      '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newDebt), ESD.decimals), 2) :
+      '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newDebt), EXED.decimals), 2) :
       '+0.00';
 }
 
 function formatDeltaBonded(type, data) {
   return type === 'INCREASE' ?
-    '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newBonded), ESD.decimals), 2) :
+    '+' + formatBN(toTokenUnitsBN(new BigNumber(data.newBonded), EXED.decimals), 2) :
     '+0.00';
 }
 
@@ -70,7 +70,7 @@ function RegulationHistory({
 
     async function updateUserInfo() {
       const [allRegulations] = await Promise.all([
-        getAllRegulations(ESDS.addr),
+        getAllRegulations(EXEDS.addr),
       ]);
 
       if (!isCancelled) {

@@ -45,7 +45,7 @@ const RegulationHeader = ({
           <div className='card'>
             <div className='card-body'>
               <Distribution
-                heading={`∅${formatMoney(totalSupply.toNumber())}`}
+                heading={`${formatMoney(totalSupply.toNumber())} EXED`}
                 items={[
                   { item: 'DAO', percentage: +(ownership(daoTotalSupply, totalSupply).toNumber().toFixed(2)) },
                   { item: 'Uniswap', percentage: +(ownership(poolTotalSupply, totalSupply).toNumber().toFixed(2)) },
@@ -60,7 +60,7 @@ const RegulationHeader = ({
           <div className='card'>
             <div className='card-body'>
               <Distribution
-                heading={`∅${formatMoney(daoTotalSupply.toNumber())}`}
+                heading={`${formatMoney(daoTotalSupply.toNumber())} EXED`}
                 items={[
                   { item: 'Bonded', percentage: +(ownership(totalBonded, daoTotalSupply).toNumber().toFixed(2)) },
                   { item: 'Staged', percentage: +(ownership(totalStaged, daoTotalSupply).toNumber().toFixed(2)) },
@@ -75,7 +75,7 @@ const RegulationHeader = ({
           <div className='card'>
             <div className='card-body'>
               <Distribution
-                heading={`∅${formatMoney(poolTotalSupply.toNumber())}`}
+                heading={`${formatMoney(poolTotalSupply.toNumber())} EXED`}
                 items={[
                   { item: 'Liquidity', percentage: +(ownership(poolLiquidity, poolTotalSupply).toNumber().toFixed(2)) },
                   { item: 'Rewarded', percentage: +(ownership(poolRewarded, poolTotalSupply).toNumber().toFixed(2)) },

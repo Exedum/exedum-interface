@@ -8,7 +8,6 @@ import { storePreference, getPreference } from './utils/storage';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import Trade from './components/Trade/index';
-import Footer from './components/Footer';
 import Wallet from "./components/Wallet";
 import EpochDetail from "./components/EpochDetail";
 import CouponMarket from "./components/CouponMarket";

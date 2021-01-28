@@ -5,7 +5,7 @@ import BigNumber from 'bignumber.js';
 import { notify } from './txNotifier.ts';
 import { UniswapV2Router02 } from '../constants/contracts';
 
-import { ESD, USDC } from '../constants/tokens';
+import { EXED, USDC } from '../constants/tokens';
 
 const uniswapRouterAbi = require('../constants/abi/UniswapV2Router02.json');
 const testnetUSDCAbi = require('../constants/abi/TestnetUSDC.json');
@@ -89,7 +89,7 @@ export const buyESD = async (buyAmount, maxInputAmount) => {
   await router.methods.swapTokensForExactTokens(
     buyAmount,
     maxInputAmount,
-    [USDC.addr, ESD.addr],
+    [USDC.addr, EXED.addr],
     account,
     deadline,
   )
@@ -107,7 +107,7 @@ export const sellESD = async (sellAmount, minOutputAmount) => {
   await router.methods.swapExactTokensForTokens(
     sellAmount,
     minOutputAmount,
-    [ESD.addr, USDC.addr],
+    [EXED.addr, USDC.addr],
     account,
     deadline,
   )
@@ -130,7 +130,7 @@ export const addLiquidity = async (amountESD, amountUSDC, slippage) => {
     .integerValue(BigNumber.ROUND_FLOOR);
 
   await router.methods.addLiquidity(
-    ESD.addr,
+    EXED.addr,
     USDC.addr,
     new BigNumber(amountESD).toFixed(),
     new BigNumber(amountUSDC).toFixed(),
@@ -151,7 +151,7 @@ export const removeLiquidity = async (liquidityAmount, minAmountESD, minAmountUS
   const deadline = Math.ceil(Date.now() / 1000) + DEADLINE_FROM_NOW;
 
   await router.methods.removeLiquidity(
-    ESD.addr,
+    EXED.addr,
     USDC.addr,
     new BigNumber(liquidityAmount).toFixed(),
     new BigNumber(minAmountESD).toFixed(),

@@ -8,7 +8,7 @@ import {
 } from '../common/index';
 import {claimPool, unbondPool, withdrawPool} from '../../utils/web3';
 import {isPos, toBaseUnitBN} from '../../utils/number';
-import {ESD, UNI} from "../../constants/tokens";
+import {EXED, UNI} from "../../constants/tokens";
 
 type MigrateProps = {
   legacyPoolAddress: string,
@@ -36,6 +36,7 @@ function Migrate({
               <div style={{width: '60%'}}>
                 <BalanceBlock asset="Bonded" balance={bonded} suffix={"UNI-V2"} />
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={<IconCircleMinus/>}
                   label="Unbond"
@@ -57,6 +58,7 @@ function Migrate({
               <div style={{width: '60%'}}>
                 <BalanceBlock asset="Staged" balance={staged} suffix={"UNI-V2"} />
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={<IconCircleMinus/>}
                   label="Withdraw"
@@ -72,19 +74,20 @@ function Migrate({
               </div>
             </div>
           </div>
-          {/* Claim ESD within Pool */}
+          {/* Claim EXED within Pool */}
           <div style={{flexBasis: '32%', paddingTop: '2%'}}>
             <div style={{display: 'flex'}}>
               <div style={{width: '60%'}}>
-                <BalanceBlock asset="Claimable" balance={claimable} suffix={"ESD"} />
+                <BalanceBlock asset="Claimable" balance={claimable} suffix={"EXED"} />
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={<IconArrowDown/>}
                   label="Claim"
                   onClick={() => {
                     claimPool(
                       legacyPoolAddress,
-                      toBaseUnitBN(claimable, ESD.decimals),
+                      toBaseUnitBN(claimable, EXED.decimals),
                       (hash) => setClaimed(hash.length > 0)
                     );
                   }}

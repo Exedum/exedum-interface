@@ -5,7 +5,7 @@ import {
 import BigNumber from 'bignumber.js';
 import { approve } from '../../utils/web3';
 
-import {ESD, USDC} from "../../constants/tokens";
+import {EXED, USDC} from "../../constants/tokens";
 import {MAX_UINT256} from "../../constants/values";
 import {UniswapV2Router02} from "../../constants/contracts";
 
@@ -22,14 +22,15 @@ function UniswapApproveCollateral({
     <Box heading="Unlock for Uniswap">
       <div style={{display: 'flex'}}>
         <div style={{width: '40%'}} />
-        {/* Approve Uniswap Router to spend ESD */}
+        {/* Approve Uniswap Router to spend EXED */}
         <div style={{width: '27%', paddingTop: '2%'}}>
           <Button
+          className="btn btn-primary"
             wide
             icon={<IconCirclePlus />}
-            label="Unlock ESD"
+            label="Unlock EXED"
             onClick={() => {
-              approve(ESD.addr, UniswapV2Router02);
+              approve(EXED.addr, UniswapV2Router02);
             }}
             disabled={user === '' || userAllowanceESD.comparedTo(MAX_UINT256) === 0}
           />
@@ -38,6 +39,7 @@ function UniswapApproveCollateral({
         <div style={{width: '6%'}} />
         <div style={{width: '27%', paddingTop: '2%'}}>
           <Button
+          className="btn btn-primary"
             wide
             icon={<IconCirclePlus />}
             label="Unlock USDC"

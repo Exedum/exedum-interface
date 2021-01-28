@@ -41,6 +41,7 @@ function MintUSDC({
             </div>
             <div style={{width: '40%'}}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus />}
                 label="Mint"

@@ -6,7 +6,7 @@ import { getTokenBalance } from '../../utils/infura';
 import { toTokenUnitsBN } from '../../utils/number';
 
 import TradePageHeader from './Header';
-import {ESD, UNI, USDC} from "../../constants/tokens";
+import {EXED, UNI, USDC} from "../../constants/tokens";
 import IconHeader from "../common/IconHeader";
 
 
@@ -21,12 +21,12 @@ function UniswapPool({ user }: {user: string}) {
       const [
         pairBalanceESDStr, pairBalanceUSDCStr,
       ] = await Promise.all([
-        getTokenBalance(ESD.addr, UNI.addr),
+        getTokenBalance(EXED.addr, UNI.addr),
         getTokenBalance(USDC.addr, UNI.addr),
       ]);
 
       if (!isCancelled) {
-        setPairBalanceESD(toTokenUnitsBN(pairBalanceESDStr, ESD.decimals));
+        setPairBalanceESD(toTokenUnitsBN(pairBalanceESDStr, EXED.decimals));
         setPairBalanceUSDC(toTokenUnitsBN(pairBalanceUSDCStr, USDC.decimals));
       }
     }
@@ -55,18 +55,18 @@ function UniswapPool({ user }: {user: string}) {
         <div style={{ flexBasis: '30%', marginRight: '3%', marginLeft: '2%'  }}>
           <MainButton
             title="Info"
-            description="View ESD-USDC pool stats."
+            description="View EXED-USDC pool stats."
             icon={<i className="fas fa-chart-area"/>}
-            href={"https://uniswap.info/pair/0x88ff79eb2bc5850f27315415da8685282c7610f9"}
+            href={"https://info.uniswap.org/pair/0xbAa3a4Eb65D46BFC94d21dd30228Ad7A94d708dd"}
           />
         </div>
 
         <div style={{ flexBasis: '30%' }}>
           <MainButton
             title="Trade"
-            description="Trade døllar tokens."
+            description="Trade Exedum tokens."
             icon={<i className="fas fa-exchange-alt"/>}
-            href={"https://uniswap.exchange/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x36f3fd68e7325a35eb768f1aedaae9ea0689d723"}
+            href={"https://app.uniswap.org/#/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x9baf5147505b980b2674aab556a51e03b3082efe"}
           />
         </div>
 
@@ -75,7 +75,7 @@ function UniswapPool({ user }: {user: string}) {
             title="Supply"
             description="Supply and redeem liquidity."
             icon={<i className="fas fa-water"/>}
-            href={"https://uniswap.exchange/add/0x36f3fd68e7325a35eb768f1aedaae9ea0689d723/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"}
+            href={"https://app.uniswap.org/#/add/0x9baf5147505b980b2674aab556a51e03b3082efe/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"}
           />
         </div>
       </div>

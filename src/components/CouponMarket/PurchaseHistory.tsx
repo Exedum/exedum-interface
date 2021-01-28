@@ -7,7 +7,7 @@ import {
   getBatchBalanceOfCoupons, getBatchBalanceOfCouponsUnderlying,
   getBatchCouponsExpiration, getCouponEpochs
 } from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
+import {EXED, EXEDS} from "../../constants/tokens";
 import {formatBN, toBaseUnitBN, toTokenUnitsBN} from "../../utils/number";
 import BigNumber from "bignumber.js";
 import { redeemCoupons, migrateCoupons } from "../../utils/web3";
@@ -31,11 +31,11 @@ function PurchaseHistory({
     let isCancelled = false;
 
     async function updateUserInfo() {
-      const epochsFromEvents = await getCouponEpochs(ESDS.addr, user);
+      const epochsFromEvents = await getCouponEpochs(EXEDS.addr, user);
       const epochNumbers = epochsFromEvents.map(e => parseInt(e.epoch));
-      const balanceOfCouponsPremium = await getBatchBalanceOfCoupons(ESDS.addr, user, epochNumbers);
-      const balanceOfCouponsPrincipal = await getBatchBalanceOfCouponsUnderlying(ESDS.addr, user, epochNumbers);
-      const couponsExpirations = await getBatchCouponsExpiration(ESDS.addr, epochNumbers);
+      const balanceOfCouponsPremium = await getBatchBalanceOfCoupons(EXEDS.addr, user, epochNumbers);
+      const balanceOfCouponsPrincipal = await getBatchBalanceOfCouponsUnderlying(EXEDS.addr, user, epochNumbers);
+      const couponsExpirations = await getBatchCouponsExpiration(EXEDS.addr, epochNumbers);
 
       const couponEpochs = epochsFromEvents.map((epoch, i) => {
         epoch.principal = new BigNumber(balanceOfCouponsPrincipal[i]);
@@ -71,9 +71,9 @@ function PurchaseHistory({
       onPageChange={setPage}
       renderEntry={(epoch) => [
         epoch.epoch.toString(),
-        formatBN(toTokenUnitsBN(epoch.coupons, ESD.decimals), 2),
-        formatBN(toTokenUnitsBN(epoch.principal, ESD.decimals), 2),
-        formatBN(toTokenUnitsBN(epoch.premium, ESD.decimals), 2),
+        formatBN(toTokenUnitsBN(epoch.coupons, EXED.decimals), 2),
+        formatBN(toTokenUnitsBN(epoch.principal, EXED.decimals), 2),
+        formatBN(toTokenUnitsBN(epoch.premium, EXED.decimals), 2),
         epoch.expiration.toString(),
         <CouponAction coupon={epoch} totalRedeemable={totalRedeemable} />
       ]}
@@ -93,13 +93,15 @@ function CouponAction({coupon, totalRedeemable}:CouponActionProps) {
     {/* pre-EIP-16 style coupons */
      coupon.principal.isZero() && !coupon.premium.isZero() ?
       <Button
+      className="btn btn-primary"
         icon={<IconRefresh />}
         label="Migrate"
-        onClick={() => migrateCoupons(ESDS.addr, coupon.epoch)}
+        onClick={() => migrateCoupons(EXEDS.addr, coupon.epoch)}
       />
       /* already redeemed coupons */
       : coupon.principal.isZero() ?
       <Button
+      className="btn btn-primary"
         icon={<IconCheck />}
         label="Redeemed"
         disabled={true}
@@ -107,13 +109,14 @@ function CouponAction({coupon, totalRedeemable}:CouponActionProps) {
       /* redeemable coupons */
       :
       <Button
+      className="btn btn-primary"
         icon={totalRedeemable.isZero() ? <IconLock /> : <IconCirclePlus />}
         label="Redeem"
         onClick={() => redeemCoupons(
-          ESDS.addr,
+          EXEDS.addr,
           coupon.epoch,
-          coupon.principal.isGreaterThan(toBaseUnitBN(totalRedeemable, ESD.decimals))
-            ? toBaseUnitBN(totalRedeemable, ESD.decimals)
+          coupon.principal.isGreaterThan(toBaseUnitBN(totalRedeemable, EXED.decimals))
+            ? toBaseUnitBN(totalRedeemable, EXED.decimals)
             : coupon.principal
         )}
         disabled={totalRedeemable.isZero()}

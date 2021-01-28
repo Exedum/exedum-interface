@@ -15,11 +15,9 @@ type BigNumberInputProps = {
 function BigNumberInput({ value, setter, adornment, disabled=false }: BigNumberInputProps) {
   return (
     <>
-      <TextInput
+      <input
         type="number"
-        adornmentPosition="end"
-        adornment={adornment}
-        wide
+        className="custom-input"
         value={value.isNegative() ? '' : value.toFixed()}
         onChange={(event) => {
           if (event.target.value) {

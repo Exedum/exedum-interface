@@ -40,6 +40,7 @@ function ModalWarning() {
 
         <div style={{ textAlign: 'right' }}>
           <Button
+          className="btn btn-primary"
             label={'I understand'}
             onClick={() => {
               storePreference('showCouponWarning', '0');

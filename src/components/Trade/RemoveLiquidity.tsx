@@ -8,7 +8,7 @@ import { removeLiquidity } from '../../utils/web3';
 import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
 import { toBaseUnitBN } from '../../utils/number';
 import {decreaseWithSlippage} from "../../utils/calculation";
-import {ESD, UNI, USDC} from "../../constants/tokens";
+import {EXED, UNI, USDC} from "../../constants/tokens";
 import BigNumberInput from "../common/BigNumberInput";
 
 type RemoveLiquidityProps = {
@@ -66,18 +66,19 @@ function RemoveLiquidity({
             <div style={{ width: '35%', marginRight: '5%' }}>
               <>
                 <PriceSection label="You get " amt={estimatedUSDCReceived} symbol=" USDC" />
-                <PriceSection label="+ " amt={estimatedESDReceived} symbol=" ESD" />
+                <PriceSection label="+ " amt={estimatedESDReceived} symbol=" EXED" />
               </>
             </div>
             <div style={{ width: '30%' }}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCircleMinus />}
                 label="Remove Liquidity"
                 onClick={() => {
                   removeLiquidity(
                     toBaseUnitBN(withdrawAmountUNI, UNI.decimals),
-                    toBaseUnitBN(minESDReceived, ESD.decimals),
+                    toBaseUnitBN(minESDReceived, EXED.decimals),
                     toBaseUnitBN(minUSDCReceived, USDC.decimals),
                   );
                 }}

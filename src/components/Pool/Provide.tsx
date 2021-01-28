@@ -8,7 +8,7 @@ import {
 } from '../common/index';
 import {approve, providePool} from '../../utils/web3';
 import {isPos, toBaseUnitBN, toTokenUnitsBN} from '../../utils/number';
-import {ESD, USDC} from "../../constants/tokens";
+import {EXED, USDC} from "../../constants/tokens";
 import {MAX_UINT256} from "../../constants/values";
 import BigNumberInput from "../common/BigNumberInput";
 
@@ -41,10 +41,10 @@ function Provide({
     const amountESDBN = new BigNumber(amountESD)
     setProvideAmount(amountESDBN);
 
-    const amountESDBU = toBaseUnitBN(amountESDBN, ESD.decimals);
+    const amountESDBU = toBaseUnitBN(amountESDBN, EXED.decimals);
     const newAmountUSDC = toTokenUnitsBN(
       amountESDBU.multipliedBy(USDCToESDRatio).integerValue(BigNumber.ROUND_FLOOR),
-      ESD.decimals);
+      EXED.decimals);
     setUsdcAmount(newAmountUSDC);
   };
 
@@ -55,7 +55,7 @@ function Provide({
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {/* total rewarded */}
             <div style={{flexBasis: '32%'}}>
-              <BalanceBlock asset="Rewarded" balance={rewarded} suffix={"ESD"} />
+              <BalanceBlock asset="Rewarded" balance={rewarded} suffix={"EXED"} />
             </div>
             <div style={{flexBasis: '33%'}}>
               <BalanceBlock asset="USDC Balance" balance={userUSDCBalance} suffix={"USDC"} />
@@ -67,7 +67,7 @@ function Provide({
                 <div style={{width: '60%', minWidth: '6em'}}>
                   <>
                     <BigNumberInput
-                      adornment="ESD"
+                      adornment="EXED"
                       value={provideAmount}
                       setter={onChangeAmountESD}
                       disabled={status === 1}
@@ -82,13 +82,14 @@ function Provide({
                 </div>
                 <div style={{width: '40%', minWidth: '6em'}}>
                   <Button
+                  className="btn btn-primary"
                     wide
                     icon={<IconArrowUp/>}
                     label="Provide"
                     onClick={() => {
                       providePool(
                         poolAddress,
-                        toBaseUnitBN(provideAmount, ESD.decimals),
+                        toBaseUnitBN(provideAmount, EXED.decimals),
                         (hash) => setProvideAmount(new BigNumber(0))
                       );
                     }}
@@ -102,7 +103,7 @@ function Provide({
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {/* total rewarded */}
             <div style={{flexBasis: '32%'}}>
-              <BalanceBlock asset="Rewarded" balance={rewarded} suffix={"ESD"} />
+              <BalanceBlock asset="Rewarded" balance={rewarded} suffix={"EXED"} />
             </div>
             <div style={{flexBasis: '33%'}}>
               <BalanceBlock asset="USDC Balance" balance={userUSDCBalance} suffix={"USDC"} />
@@ -111,6 +112,7 @@ function Provide({
             {/* Approve Pool to spend USDC */}
             <div style={{flexBasis: '33%', paddingTop: '2%'}}>
               <Button
+              className="btn btn-primary"
                 wide
                 icon={<IconCirclePlus/>}
                 label="Approve"

@@ -1,9 +1,9 @@
 import { getPool } from "./infura";
-import { ESDS } from "../constants/tokens";
+import { EXEDS } from "../constants/tokens";
 import {DollarPool1, DollarPool2} from "../constants/contracts";
 
 export async function getPoolAddress(): Promise<string> {
-  const pool = await getPool(ESDS.addr);
+  const pool = await getPool(EXEDS.addr);
   if (pool.toLowerCase() === DollarPool2.toLowerCase()) {
     return DollarPool2;
   }

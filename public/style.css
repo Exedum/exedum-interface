@@ -7717,3 +7717,16 @@
   .fmxw-400 {
     max-width: 400px !important;
   }
+
+  .custom-input {
+    width: 95%;
+    height: 37px;
+    padding: 0 10px;
+  }
+
+  .connect-panel {
+    border-style: solid !important;
+    border-color: unset !important;
+    border-width: 0px !important;
+    background: unset !important;
+  }

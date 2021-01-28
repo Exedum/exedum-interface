@@ -29,10 +29,10 @@ const PoolPageHeader = ({
       <BalanceBlock asset="Balance" balance={accountUNIBalance}  suffix={" UNI-V2"}/>
     </div>
     <div style={{ flexBasis: '20%' }}>
-      <BalanceBlock asset="Rewarded" balance={accountRewardedESDBalance} suffix={" ESD"} />
+      <BalanceBlock asset="Rewarded" balance={accountRewardedESDBalance} suffix={" EXED"} />
     </div>
     <div style={{ flexBasis: '20%' }}>
-      <BalanceBlock asset="Claimable" balance={accountClaimableESDBalance} suffix={" ESD"} />
+      <BalanceBlock asset="Claimable" balance={accountClaimableESDBalance} suffix={" EXED"} />
     </div>
     <div style={{ flexBasis: '20%' }}>
       <BalanceBlock asset="Pool Ownership" balance={ownership(accountBondedBalance, poolTotalBonded)}  suffix={"%"}/>

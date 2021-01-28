@@ -24,6 +24,7 @@ function UniswapApprovePoolToken({
         {/* Approve Uniswap Router to spend UNI */}
         <div style={{width: '27%', paddingTop: '2%'}}>
           <Button
+          className="btn btn-primary"
             wide
             icon={<IconCirclePlus />}
             label="Unlock UNI-V2"

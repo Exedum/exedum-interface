@@ -4,7 +4,7 @@ import {
 } from '@aragon/ui';
 import {advance} from '../../utils/web3';
 import NumberBlock from "../common/NumberBlock";
-import {ESDS} from "../../constants/tokens";
+import {EXEDS} from "../../constants/tokens";
 
 type AdvanceEpochProps = {
   user: string,
@@ -28,11 +28,12 @@ function AdvanceEpoch({
         <div style={{ width: '40%' }}/>
         <div style={{ width: '30%', paddingTop: '2%' }}>
           <Button
+          className="btn btn-primary"
             wide
             icon={<IconCirclePlus />}
             label="Advance"
             onClick={() => {
-              advance(ESDS.addr);
+              advance(EXEDS.addr);
             }}
             disabled={user === '' || epoch >= epochTime}
           />

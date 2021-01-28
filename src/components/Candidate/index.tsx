@@ -9,7 +9,7 @@ import {
   getTokenBalance,
   getTokenTotalSupply, getTotalBondedAt
 } from '../../utils/infura';
-import {ESDS} from "../../constants/tokens";
+import {EXEDS} from "../../constants/tokens";
 import {toTokenUnitsBN} from "../../utils/number";
 import BigNumber from "bignumber.js";
 import Vote from "./Vote";
@@ -46,15 +46,15 @@ function Candidate({ user }: {user: string}) {
       const [
         voteStr, statusStr, userStakeStr,
       ] = await Promise.all([
-        getRecordedVote(ESDS.addr, user, candidate),
-        getStatusOf(ESDS.addr, user),
-        getTokenBalance(ESDS.addr, user),
+        getRecordedVote(EXEDS.addr, user, candidate),
+        getStatusOf(EXEDS.addr, user),
+        getTokenBalance(EXEDS.addr, user),
       ]);
 
       if (!isCancelled) {
         setVote(parseInt(voteStr, 10));
         setStatus(parseInt(statusStr, 10));
-        setUserStake(toTokenUnitsBN(userStakeStr, ESDS.decimals));
+        setUserStake(toTokenUnitsBN(userStakeStr, EXEDS.decimals));
       }
     }
     updateUserInfo();
@@ -75,13 +75,13 @@ function Candidate({ user }: {user: string}) {
         approveForStr, rejectForStr, totalStakeStr,
         epochStr, startForStr, periodForStr, isInitialized
       ] = await Promise.all([
-        getApproveFor(ESDS.addr, candidate),
-        getRejectFor(ESDS.addr, candidate),
-        getTokenTotalSupply(ESDS.addr),
-        getEpoch(ESDS.addr),
-        getStartFor(ESDS.addr, candidate),
-        getPeriodFor(ESDS.addr, candidate),
-        getIsInitialized(ESDS.addr, candidate),
+        getApproveFor(EXEDS.addr, candidate),
+        getRejectFor(EXEDS.addr, candidate),
+        getTokenTotalSupply(EXEDS.addr),
+        getEpoch(EXEDS.addr),
+        getStartFor(EXEDS.addr, candidate),
+        getPeriodFor(EXEDS.addr, candidate),
+        getIsInitialized(EXEDS.addr, candidate),
       ]);
 
       const epochN = parseInt(epochStr, 10);
@@ -90,13 +90,13 @@ function Candidate({ user }: {user: string}) {
 
       const endsAfter = (startN + periodN - 1);
       if (epochN > endsAfter) {
-        totalStakeStr = await getTotalBondedAt(ESDS.addr, endsAfter);
+        totalStakeStr = await getTotalBondedAt(EXEDS.addr, endsAfter);
       }
 
       if (!isCancelled) {
-        setApproveFor(toTokenUnitsBN(approveForStr, ESDS.decimals));
-        setRejectFor(toTokenUnitsBN(rejectForStr, ESDS.decimals));
-        setTotalStake(toTokenUnitsBN(totalStakeStr, ESDS.decimals));
+        setApproveFor(toTokenUnitsBN(approveForStr, EXEDS.decimals));
+        setRejectFor(toTokenUnitsBN(rejectForStr, EXEDS.decimals));
+        setTotalStake(toTokenUnitsBN(totalStakeStr, EXEDS.decimals));
         setEpoch(epochN);
         setStartEpoch(startN);
         setPeriodEpoch(periodN);

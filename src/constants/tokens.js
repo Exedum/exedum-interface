@@ -10,13 +10,13 @@ export const USDC = {
   symbol: 'USDC',
 };
 
-export const ESD = {
+export const EXED = {
   addr: '0xeb00131f8Ba63922d63C9F22Ff49acaC6BC56456',
   decimals: 18,
   symbol: 'EXED',
 };
 
-export const ESDS = {
+export const EXEDS = {
   addr: '0xD8DDF2715715D43622A88Ba2e4CeF3455be74b5e',
   decimals: 18,
   symbol: 'EXEDS',

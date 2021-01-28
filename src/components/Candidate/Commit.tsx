@@ -3,7 +3,7 @@ import {
   Box, Button, IconUpload
 } from '@aragon/ui';
 import TextBlock from "../common/TextBlock";
-import {ESDS} from "../../constants/tokens";
+import {EXEDS} from "../../constants/tokens";
 import {commit} from "../../utils/web3";
 
 type CommitProps = {
@@ -52,12 +52,13 @@ function Commit({
           <div style={{width: '30%', paddingTop: '2%'}}>
             <div style={{display: 'flex'}}>
                 <Button
+                className="btn btn-primary"
                   wide
                   icon={<IconUpload/>}
                   label="Commit"
                   onClick={() => {
                     commit(
-                      ESDS.addr,
+                      EXEDS.addr,
                       candidate
                     );
                   }}

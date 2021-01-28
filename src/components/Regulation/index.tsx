@@ -7,7 +7,7 @@ import {
   getPoolTotalClaimable, getPoolTotalRewarded, getTokenBalance,
   getTokenTotalSupply, getTotalBonded, getTotalDebt, getTotalRedeemable, getTotalStaged,
 } from '../../utils/infura';
-import {ESD, ESDS, UNI} from "../../constants/tokens";
+import {EXED, EXEDS, UNI} from "../../constants/tokens";
 import {toTokenUnitsBN} from "../../utils/number";
 import BigNumber from "bignumber.js";
 import RegulationHeader from "./Header";
@@ -47,45 +47,45 @@ function Regulation({ user }: {user: string}) {
         legacyPoolTotalRewardedStr, legacyPoolTotalClaimableStr,
         totalDebtStr, totalCouponsStr, totalCouponsUnderlyingStr
       ] = await Promise.all([
-        getTokenTotalSupply(ESD.addr),
+        getTokenTotalSupply(EXED.addr),
 
-        getTotalBonded(ESDS.addr),
-        getTotalStaged(ESDS.addr),
-        getTotalRedeemable(ESDS.addr),
+        getTotalBonded(EXEDS.addr),
+        getTotalStaged(EXEDS.addr),
+        getTotalRedeemable(EXEDS.addr),
 
-        getTokenBalance(ESD.addr, UNI.addr),
+        getTokenBalance(EXED.addr, UNI.addr),
         getPoolTotalRewarded(poolAddress),
         getPoolTotalClaimable(poolAddress),
 
         getPoolTotalRewarded(legacyPoolAddress),
         getPoolTotalClaimable(legacyPoolAddress),
 
-        getTotalDebt(ESDS.addr),
-        getTotalCoupons(ESDS.addr),
-        getTotalCouponsUnderlying(ESDS.addr),
+        getTotalDebt(EXEDS.addr),
+        getTotalCoupons(EXEDS.addr),
+        getTotalCouponsUnderlying(EXEDS.addr),
       ]);
 
       if (!isCancelled) {
-        setTotalSupply(toTokenUnitsBN(totalSupplyStr, ESD.decimals));
+        setTotalSupply(toTokenUnitsBN(totalSupplyStr, EXED.decimals));
 
-        setTotalBonded(toTokenUnitsBN(totalBondedStr, ESD.decimals));
-        setTotalStaged(toTokenUnitsBN(totalStagedStr, ESD.decimals));
-        setTotalRedeemable(toTokenUnitsBN(totalRedeemableStr, ESD.decimals));
+        setTotalBonded(toTokenUnitsBN(totalBondedStr, EXED.decimals));
+        setTotalStaged(toTokenUnitsBN(totalStagedStr, EXED.decimals));
+        setTotalRedeemable(toTokenUnitsBN(totalRedeemableStr, EXED.decimals));
 
-        setPoolLiquidity(toTokenUnitsBN(poolLiquidityStr, ESD.decimals));
-        setPoolTotalRewarded(toTokenUnitsBN(poolTotalRewardedStr, ESD.decimals));
-        setPoolTotalClaimable(toTokenUnitsBN(poolTotalClaimableStr, ESD.decimals));
+        setPoolLiquidity(toTokenUnitsBN(poolLiquidityStr, EXED.decimals));
+        setPoolTotalRewarded(toTokenUnitsBN(poolTotalRewardedStr, EXED.decimals));
+        setPoolTotalClaimable(toTokenUnitsBN(poolTotalClaimableStr, EXED.decimals));
 
-        setLegacyPoolTotalRewarded(toTokenUnitsBN(legacyPoolTotalRewardedStr, ESD.decimals));
-        setLegacyPoolTotalClaimable(toTokenUnitsBN(legacyPoolTotalClaimableStr, ESD.decimals));
+        setLegacyPoolTotalRewarded(toTokenUnitsBN(legacyPoolTotalRewardedStr, EXED.decimals));
+        setLegacyPoolTotalClaimable(toTokenUnitsBN(legacyPoolTotalClaimableStr, EXED.decimals));
 
-        setTotalDebt(toTokenUnitsBN(totalDebtStr, ESD.decimals));
-        setTotalCoupons(toTokenUnitsBN(totalCouponsStr, ESD.decimals));
-        setTotalCouponsUnderlying(toTokenUnitsBN(totalCouponsUnderlyingStr, ESD.decimals));
+        setTotalDebt(toTokenUnitsBN(totalDebtStr, EXED.decimals));
+        setTotalCoupons(toTokenUnitsBN(totalCouponsStr, EXED.decimals));
+        setTotalCouponsUnderlying(toTokenUnitsBN(totalCouponsUnderlyingStr, EXED.decimals));
 
         if (new BigNumber(totalDebtStr).isGreaterThan(ONE_COUPON)) {
-          const couponPremiumStr = await getCouponPremium(ESDS.addr, ONE_COUPON)
-          setCouponPremium(toTokenUnitsBN(couponPremiumStr, ESD.decimals));
+          const couponPremiumStr = await getCouponPremium(EXEDS.addr, ONE_COUPON)
+          setCouponPremium(toTokenUnitsBN(couponPremiumStr, EXED.decimals));
         } else {
           setCouponPremium(new BigNumber(0));
         }
