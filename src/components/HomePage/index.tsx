@@ -6,8 +6,8 @@ import {
 import EpochBlock from "../common/EpochBlock";
 
 function epochformatted() {
-  const epochStart = 1599148800;
-  const epochPeriod = 8 * 60 * 60;
+  const epochStart = 1611777600;
+  const epochPeriod = 24 * 60 * 60;
   const hour = 60 * 60;
   const minute = 60;
   const unixTimeSec = Math.floor(Date.now() / 1000);

@@ -47,7 +47,7 @@ function App() {
   return (
     <Router>
       <UseWalletProvider
-        chainId={42}
+        chainId={1}
         connectors={{
           walletconnect: { rpcUrl: 'https://mainnet.eth.aragon.network/' },
           walletlink: {
